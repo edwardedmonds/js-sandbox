@@ -42,12 +42,17 @@
 
 // console.log(text);
 
-let age = 91;
+// let age = 91;
 
-if (age >= 14 && age <= 90) {
-  console.log('You are between 14 and 90 years old.');
-} else if (age < 14) {
-  console.log('You are under 14 years old.');
-} else {
-  console.log('You are over 90 years old.');
+// if (age >= 14 && age <= 90) {
+//   console.log('You are between 14 and 90 years old.');
+// } else if (age < 14) {
+//   console.log('You are under 14 years old.');
+// } else {
+//   console.log('You are over 90 years old.');
+// }
+
+let i = 0;
+while (i++ < 5) {
+  console.log(i);
 }
