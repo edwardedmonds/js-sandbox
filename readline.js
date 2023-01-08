@@ -12,12 +12,14 @@ async function getUserName(user, attemptsAllowed) {
 
     if (user === userName) {
       console.log(`Hello ${userName}`);
+      return true;
     } else {
       if (loginAttempts < attemptsAllowed) {
         console.log('Your user name is incorrect. Try again.');
         loginAttempts++;
       } else {
         console.log('You have tried to many times. Goodbye.');
+        return false;
         break;
       }
     }
@@ -34,6 +36,7 @@ async function getUserPassword(pass, attemptsAllowed) {
     rl.close();
     if (pass === password) {
       console.log('You are now logged in.');
+      return true;
     } else {
       if (passAttempts < attemptsAllowed) {
         console.log('Your password is incorrect. Please try again.');
@@ -42,14 +45,18 @@ async function getUserPassword(pass, attemptsAllowed) {
         console.log(
           'You have entered the wrong password too many times. Goodbye.'
         );
+        return false;
         break;
       }
     }
   }
 }
 
-await getUserName('admin', 3);
-await getUserPassword('pass', 3);
+if ((await getUserName('admin', 3)) === true) {
+  await getUserPassword('pass', 3);
+} else {
+  console.log('Get the out of here.');
+}
 
 // if (userName === 'admin') {
 //   console.log(`Hello ${userName}.`);
