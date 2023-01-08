@@ -139,7 +139,7 @@ function whoWinsTheGame() {
   console.log(`\nGame history:`);
 
   let table = new Table({
-    head: ['Round', 'Result', 'Player', 'Computer'],
+    head: ['Round', 'Result', scoreCard.playerName, 'Computer'],
   });
 
   for (let i = 0; i < scoreCard.history.length; i++) {
