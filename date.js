@@ -24,4 +24,6 @@ const months = [
   { name: 'December', days: 31 },
 ];
 
-console.log(months[month].name);
+for (let m of months) {
+  console.log(m.name);
+}

@@ -17,5 +17,12 @@
   "bugs": {
     "url": "https://github.com/edwardedmonds/js-sandbox/issues"
   },
-  "homepage": "https://github.com/edwardedmonds/js-sandbox#readme"
+  "homepage": "https://github.com/edwardedmonds/js-sandbox#readme",
+  "dependencies": {
+    "boxen": "^7.0.1",
+    "brain.js": "^2.0.0-beta.18",
+    "chalk": "^5.2.0",
+    "cli-table3": "^0.6.3",
+    "inquirer": "^9.1.4"
+  }
 }
