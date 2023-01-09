@@ -2,15 +2,7 @@ import inquirer from 'inquirer';
 import chalk from 'chalk';
 import boxen from 'boxen';
 import Table from 'cli-table3';
-
-// const scoreCard = {
-//   numberOfRoundsToPlay: 0,
-//   numberOfRoundsPlayed: 0,
-//   playerName: '',
-//   playerWins: 0,
-//   computerWins: 0,
-//   ties: 0,
-// };
+import fs from 'fs';
 
 const scoreCard = {
   numberOfRoundsToPlay: 0,
@@ -21,6 +13,10 @@ const scoreCard = {
   ties: 0,
   history: [],
 };
+
+function saveScoreCard(scoreCard) {
+  fs.writeFileSync('scoreCard.json', JSON.stringify(scoreCard));
+}
 
 function computerChoice() {
   let choices = ['rock', 'paper', 'scissors'];
@@ -45,75 +41,47 @@ async function playerChoice() {
   return playerSelection;
 }
 
-// async function playRound(playerSelection, computerSelection) {
-//   if (playerSelection == computerSelection) {
-//     scoreCard.ties++;
-//     return chalk.blue('tie!'.toUpperCase());
-//   } else if (
-//     (playerSelection === 'rock' && computerSelection === 'scissors') ||
-//     (playerSelection === 'paper' && computerSelection === 'rock') ||
-//     (playerSelection === 'scissors' && computerSelection === 'paper')
-//   ) {
-//     scoreCard.playerWins++;
-//     return chalk.green(`${scoreCard.playerName} wins!`.toUpperCase());
-//   } else if (
-//     (computerSelection === 'rock' && playerSelection === 'scissors') ||
-//     (computerSelection === 'paper' && playerSelection == 'rock') ||
-//     (computerSelection === 'scissors' && playerSelection === 'paper')
-//   ) {
-//     scoreCard.computerWins++;
-//     return chalk.magenta('computer wins!'.toUpperCase());
-//   }
-// }
-
 async function playRound(round, playerSelection, computerSelection) {
-  if (playerSelection == computerSelection) {
-    scoreCard.ties++;
-    scoreCard.history.push({
-      round: round,
-      result: 'tie',
-      playerSelection: playerSelection,
-      computerSelection: computerSelection,
-    });
-    return chalk.blue('tie!'.toUpperCase());
-  } else if (
-    (playerSelection === 'rock' && computerSelection === 'scissors') ||
-    (playerSelection === 'paper' && computerSelection === 'rock') ||
-    (playerSelection === 'scissors' && computerSelection === 'paper')
-  ) {
-    scoreCard.playerWins++;
-    scoreCard.history.push({
-      round: round,
-      result: 'win',
-      playerSelection: playerSelection,
-      computerSelection: computerSelection,
-    });
-    return chalk.green(`${scoreCard.playerName} wins!`.toUpperCase());
-  } else if (
-    (computerSelection === 'rock' && playerSelection === 'scissors') ||
-    (computerSelection === 'paper' && playerSelection == 'rock') ||
-    (computerSelection === 'scissors' && playerSelection === 'paper')
-  ) {
-    scoreCard.computerWins++;
-    scoreCard.history.push({
-      round: round,
-      result: 'loss',
-      playerSelection: playerSelection,
-      computerSelection: computerSelection,
-    });
-    return chalk.magenta('computer wins!'.toUpperCase());
+  const result = getResult(playerSelection, computerSelection);
+  scoreCard.history.push({
+    round: round,
+    result: result,
+    playerSelection: playerSelection,
+    computerSelection: computerSelection,
+  });
+  switch (result) {
+    case 'tie':
+      scoreCard.ties++;
+      return chalk.blue('tie!'.toUpperCase());
+    case 'win':
+      scoreCard.playerWins++;
+      return chalk.green(`${scoreCard.playerName} wins!`.toUpperCase());
+    case 'loss':
+      scoreCard.computerWins++;
+      return chalk.magenta('computer wins!'.toUpperCase());
   }
 }
 
-// function whoWinsTheGame() {
-//   if (scoreCard.playerWins > scoreCard.computerWins) {
-//     return `${scoreCard.playerName} wins the game!`.toUpperCase();
-//   } else if (scoreCard.playerWins < scoreCard.computerWins) {
-//     return 'computer wins the game!'.toUpperCase();
-//   } else {
-//     return 'tie game!'.toUpperCase();
-//   }
-// }
+function getResult(playerSelection, computerSelection) {
+  const results = new Map();
+  results.set('rock', {
+    rock: 'tie',
+    scissors: 'win',
+    paper: 'loss',
+  });
+  results.set('paper', {
+    rock: 'loss',
+    scissors: 'tie',
+    paper: 'win',
+  });
+  results.set('scissors', {
+    rock: 'win',
+    scissors: 'loss',
+    paper: 'tie',
+  });
+
+  return results.get(playerSelection)[computerSelection];
+}
 
 function whoWinsTheGame() {
   if (scoreCard.playerWins > scoreCard.computerWins) {
@@ -179,25 +147,6 @@ async function askForPlayerName() {
   });
 }
 
-// async function playGame() {
-//   console.log(
-//     boxen('Rock! Paper! Scissors!', { padding: 1, borderColor: 'cyan' })
-//   );
-
-//   await askForPlayerName();
-
-//   await askHowManyRoundsToPlay();
-
-//   while (scoreCard.numberOfRoundsPlayed < scoreCard.numberOfRoundsToPlay) {
-//     await playRound(await playerChoice(), computerChoice()).then((whoWon) => {
-//       console.log(whoWon);
-//     });
-//     scoreCard.numberOfRoundsPlayed++;
-//   }
-
-//   console.log(boxen(whoWinsTheGame(), { padding: 1, borderColor: 'cyan' }));
-// }
-
 async function playGame() {
   console.log(
     boxen('Rock! Paper! Scissors!', { padding: 1, borderColor: 'cyan' })
@@ -216,6 +165,8 @@ async function playGame() {
   }
 
   whoWinsTheGame();
+
+  saveScoreCard(scoreCard);
 }
 
 playGame();
