@@ -15,7 +15,12 @@ const scoreCard = {
 };
 
 function saveScoreCard(scoreCard) {
-  fs.writeFileSync('scoreCard.json', JSON.stringify(scoreCard));
+  fs.writeFileSync('scoreCard.json', JSON.stringify(scoreCard), (error) => {
+    if (error) {
+      console.error(error);
+      return;
+    }
+  });
 }
 
 function computerChoice() {
