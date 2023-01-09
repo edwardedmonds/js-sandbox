@@ -3,6 +3,7 @@ import chalk from 'chalk';
 import boxen from 'boxen';
 import Table from 'cli-table3';
 import fs from 'fs';
+import brain from 'brain.js';
 
 const scoreCard = {
   numberOfRoundsToPlay: 0,
@@ -23,10 +24,43 @@ function saveScoreCard(scoreCard) {
   });
 }
 
+// function computerChoice() {
+//   let choices = ['rock', 'paper', 'scissors'];
+//   let computerSelection = Math.floor(Math.random() * 3);
+//   return choices[computerSelection];
+// }
+
+let net;
+
+// This function trains the neural network on the player's past selections
+function trainNeuralNetwork() {
+  // Load the data from the scoreCard.json file
+  const data = JSON.parse(fs.readFileSync('scoreCard.json'));
+
+  // Create an array of all the player's past selections
+  const playerSelections = data.history.map((round) => round.playerSelection);
+
+  // Create a new neural network
+  net = new brain.recurrent.LSTM();
+
+  // Train the neural network on the player's past selections
+  net.train(playerSelections, {
+    iterations: 20,
+  });
+}
+
+// This function uses the trained neural network to predict the player's next selection
 function computerChoice() {
-  let choices = ['rock', 'paper', 'scissors'];
-  let computerSelection = Math.floor(Math.random() * 3);
-  return choices[computerSelection];
+  // Use the neural network to predict the player's next selection
+  const prediction = net.run(playerSelections);
+
+  // Return a random choice if the prediction is not rock, paper, or scissors
+  if (!['rock', 'paper', 'scissors'].includes(prediction)) {
+    return computerChoice();
+  }
+
+  // Return the predicted choice
+  return prediction;
 }
 
 async function playerChoice() {
