@@ -1,10 +1,10 @@
 {
-  "numberOfRoundsToPlay": 20,
+  "numberOfRoundsToPlay": 30,
   "numberOfRoundsPlayed": 0,
-  "playerName": "Edward",
-  "playerWins": 9,
-  "computerWins": 8,
-  "ties": 3,
+  "playerName": "player1",
+  "playerWins": 15,
+  "computerWins": 4,
+  "ties": 11,
   "history": [
     {
       "round": 1,
@@ -14,117 +14,177 @@
     },
     {
       "round": 2,
-      "result": "tie",
+      "result": "loss",
       "playerSelection": "rock",
-      "computerSelection": "rock"
+      "computerSelection": "paper"
     },
     {
       "round": 3,
-      "result": "win",
-      "playerSelection": "paper",
+      "result": "loss",
+      "playerSelection": "rock",
       "computerSelection": "paper"
     },
     {
       "round": 4,
       "result": "loss",
-      "playerSelection": "scissors",
-      "computerSelection": "scissors"
+      "playerSelection": "rock",
+      "computerSelection": "paper"
     },
     {
       "round": 5,
       "result": "tie",
       "playerSelection": "paper",
-      "computerSelection": "scissors"
+      "computerSelection": "paper"
     },
     {
       "round": 6,
-      "result": "win",
+      "result": "tie",
       "playerSelection": "paper",
       "computerSelection": "paper"
     },
     {
       "round": 7,
-      "result": "loss",
+      "result": "tie",
       "playerSelection": "paper",
-      "computerSelection": "rock"
+      "computerSelection": "paper"
     },
     {
       "round": 8,
-      "result": "loss",
-      "playerSelection": "scissors",
-      "computerSelection": "scissors"
+      "result": "tie",
+      "playerSelection": "paper",
+      "computerSelection": "paper"
     },
     {
       "round": 9,
-      "result": "win",
+      "result": "tie",
       "playerSelection": "paper",
       "computerSelection": "paper"
     },
     {
       "round": 10,
-      "result": "win",
+      "result": "tie",
       "playerSelection": "paper",
       "computerSelection": "paper"
     },
     {
       "round": 11,
-      "result": "loss",
-      "playerSelection": "scissors",
-      "computerSelection": "scissors"
+      "result": "tie",
+      "playerSelection": "paper",
+      "computerSelection": "paper"
     },
     {
       "round": 12,
-      "result": "win",
-      "playerSelection": "rock",
-      "computerSelection": "scissors"
+      "result": "tie",
+      "playerSelection": "paper",
+      "computerSelection": "paper"
     },
     {
       "round": 13,
-      "result": "win",
-      "playerSelection": "scissors",
-      "computerSelection": "rock"
+      "result": "tie",
+      "playerSelection": "paper",
+      "computerSelection": "paper"
     },
     {
       "round": 14,
-      "result": "loss",
+      "result": "tie",
       "playerSelection": "paper",
-      "computerSelection": "rock"
+      "computerSelection": "paper"
     },
     {
       "round": 15,
       "result": "win",
       "playerSelection": "scissors",
-      "computerSelection": "rock"
+      "computerSelection": "paper"
     },
     {
       "round": 16,
-      "result": "loss",
+      "result": "win",
       "playerSelection": "scissors",
-      "computerSelection": "scissors"
+      "computerSelection": "paper"
     },
     {
       "round": 17,
       "result": "win",
       "playerSelection": "scissors",
-      "computerSelection": "rock"
+      "computerSelection": "paper"
     },
     {
       "round": 18,
-      "result": "tie",
-      "playerSelection": "paper",
-      "computerSelection": "scissors"
+      "result": "win",
+      "playerSelection": "scissors",
+      "computerSelection": "paper"
     },
     {
       "round": 19,
-      "result": "loss",
-      "playerSelection": "scissors",
-      "computerSelection": "scissors"
+      "result": "tie",
+      "playerSelection": "paper",
+      "computerSelection": "paper"
     },
     {
       "round": 20,
       "result": "win",
       "playerSelection": "scissors",
-      "computerSelection": "rock"
+      "computerSelection": "paper"
+    },
+    {
+      "round": 21,
+      "result": "win",
+      "playerSelection": "scissors",
+      "computerSelection": "paper"
+    },
+    {
+      "round": 22,
+      "result": "win",
+      "playerSelection": "scissors",
+      "computerSelection": "paper"
+    },
+    {
+      "round": 23,
+      "result": "win",
+      "playerSelection": "scissors",
+      "computerSelection": "paper"
+    },
+    {
+      "round": 24,
+      "result": "win",
+      "playerSelection": "scissors",
+      "computerSelection": "paper"
+    },
+    {
+      "round": 25,
+      "result": "win",
+      "playerSelection": "scissors",
+      "computerSelection": "paper"
+    },
+    {
+      "round": 26,
+      "result": "win",
+      "playerSelection": "scissors",
+      "computerSelection": "paper"
+    },
+    {
+      "round": 27,
+      "result": "win",
+      "playerSelection": "scissors",
+      "computerSelection": "paper"
+    },
+    {
+      "round": 28,
+      "result": "win",
+      "playerSelection": "scissors",
+      "computerSelection": "paper"
+    },
+    {
+      "round": 29,
+      "result": "win",
+      "playerSelection": "scissors",
+      "computerSelection": "paper"
+    },
+    {
+      "round": 30,
+      "result": "win",
+      "playerSelection": "scissors",
+      "computerSelection": "paper"
     }
   ]
 }
